@@ -5,6 +5,9 @@ from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 
+# PyTorch random generator
+torch.manual_seed(42)
+
 # Define the updated SimpleNN_3L with appropriate input size
 class SimpleNN_3L(nn.Module):
     def __init__(self, input_size, L1, L2, L3):
@@ -53,7 +56,12 @@ def train_3L(model, criterion, optimizer, X_train, y_train, batch_size, num_epoc
 
 # Function to train the model on your data
 def RL_NN_3L(X, y, num_epochs=100, batch_size=3, L1=124, L2=256, L3=512, weight_decay=0.01):
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    if torch.cuda.is_available():
+        device = torch.device("cuda")  # Use CUDA if available (NVIDIA GPU)
+    elif torch.backends.mps.is_available():
+        device = torch.device("mps")  # Use Metal Performance Shaders (Apple Silicon)
+    else:
+        device = torch.device("cpu")  # Fallback to CPU
     X_tensor = torch.tensor(X, dtype=torch.float32)
     y_tensor = torch.tensor(y, dtype=torch.float32).view(-1, 1)
 
@@ -110,7 +118,12 @@ def fine_tune_model(model, criterion, optimizer, X_train, y_train, batch_size, n
 
 # Fine-tuning process encapsulated into a function
 def fine_tune_existing_model(model, new_X_data, new_y_data, batch_size=2, fine_tune_epochs=100):
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    if torch.cuda.is_available():
+        device = torch.device("cuda")  # Use CUDA if available (NVIDIA GPU)
+    elif torch.backends.mps.is_available():
+        device = torch.device("mps")  # Use Metal Performance Shaders (Apple Silicon)
+    else:
+        device = torch.device("cpu")  # Fallback to CPU
     
     # Convert new data to tensors
     new_X = torch.tensor(new_X_data, dtype=torch.float32)
