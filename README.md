@@ -8,3 +8,18 @@ The water sub-model simulates the processes and energy use associated with groun
 <p align="center">
     <img src="image.png" alt="A schematic of the process-based energy-water microgrid simulation model">
 </p>
+Optimization Using Fitted Value Iteration (FVI)
+To optimize the operation of the system, particularly the on/off decisions of two key pumps, we applied Fitted Value Iteration (FVI) — a reinforcement learning algorithm suitable for problems with continuous state spaces and long-term planning needs. FVI approximates the value function using supervised learning (e.g., regression trees, neural networks) to guide decision-making over multiple time steps.
+
+In this context, the goal was to:
+
+Minimize total energy cost (especially diesel use),
+
+Reduce environmental impact, and
+
+Maximize the reliability of groundwater availability.
+
+FVI was employed to determine the optimal switching policy for pump operations based on system state variables, including energy availability, tank levels, and well conditions.
+
+Disclaimer
+This repository presents an initial version of a project developed under the research of Roozbeh Ghasemi. The finalized outcomes and extended methodology were published in a peer-reviewed journal article. For full technical details, performance evaluations, and results, please refer to the published article available via Google Scholar by searching for Roozbeh Ghasemi.
