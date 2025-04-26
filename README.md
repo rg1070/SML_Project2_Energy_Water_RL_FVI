@@ -19,7 +19,7 @@ The water sub-model simulates the processes and energy use associated with groun
 To optimize the operation of the system, particularly the on/off decisions of two key pumps, we applied **Fitted Value Iteration (FVI)** — a reinforcement learning algorithm suitable for problems with continuous state spaces and long-term planning needs. FVI approximates the value function using supervised learning (e.g., neural networks) to guide decision-making over multiple time steps.
 
 In this context, the goal was to:
-- **Minimize total energy cost** (especially diesel use),
+- **Minimize lifecycle costs**,
 - **Reduce environmental impact**, and
 - **Maximize the reliability** of groundwater availability.
 
